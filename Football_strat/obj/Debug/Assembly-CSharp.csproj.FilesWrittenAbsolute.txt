@@ -1,0 +1,17 @@
+/Users/mairault/Perso/Foot_strat/Football_strat/Temp/bin/Debug/UnityEngine.dll
+/Users/mairault/Perso/Foot_strat/Football_strat/Temp/bin/Debug/UnityEditor.dll
+/Users/mairault/Perso/Foot_strat/Football_strat/Temp/bin/Debug/UnityEngine.UI.dll
+/Users/mairault/Perso/Foot_strat/Football_strat/Temp/bin/Debug/UnityEngine.Networking.dll
+/Users/mairault/Perso/Foot_strat/Football_strat/Temp/bin/Debug/Mono.Cecil.dll
+/Users/mairault/Perso/Foot_strat/Football_strat/Temp/bin/Debug/Unity.SerializationLogic.dll
+/Users/mairault/Perso/Foot_strat/Football_strat/Temp/bin/Debug/Unity.DataContract.dll
+/Users/mairault/Perso/Foot_strat/Football_strat/Temp/bin/Debug/ICSharpCode.NRefactory.dll
+/Users/mairault/Perso/Foot_strat/Football_strat/Temp/bin/Debug/Unity.UNetWeaver.dll
+/Users/mairault/Perso/Foot_strat/Football_strat/Temp/bin/Debug/Unity.UNetWeaver.dll.mdb
+/Users/mairault/Perso/Foot_strat/Football_strat/Temp/bin/Debug/Unity.CecilTools.dll
+/Users/mairault/Perso/Foot_strat/Football_strat/Temp/bin/Debug/Mono.Cecil.Pdb.dll
+/Users/mairault/Perso/Foot_strat/Football_strat/Temp/bin/Debug/Mono.Cecil.Mdb.dll
+/Users/mairault/Perso/Foot_strat/Football_strat/Temp/bin/Debug/Assembly-CSharp.dll.mdb
+/Users/mairault/Perso/Foot_strat/Football_strat/Temp/bin/Debug/Assembly-CSharp.dll
+/Users/mairault/Perso/Foot_strat/Football_strat/obj/Debug/Assembly-CSharp.dll
+/Users/mairault/Perso/Foot_strat/Football_strat/obj/Debug/Assembly-CSharp.dll.mdb

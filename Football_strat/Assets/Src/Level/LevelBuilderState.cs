@@ -1,0 +1,12 @@
+﻿using System;
+
+public enum LevelBuilderState{
+	START_DISPLAYING,
+	DISPLAY_GRID, 
+	DISPLAY_BACKGROUND, 
+	DISPLAY_COMPONENTS, 
+	DISPLAY_TEXT,
+	LEVEL_IS_DISPLAYED
+};
+
+

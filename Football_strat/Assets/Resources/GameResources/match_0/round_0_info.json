@@ -1,0 +1,13 @@
+{
+	"match_id":0,
+		"round_id":0,
+		"length":40,
+		"width":15,
+		"team_0":"BDX",
+		"team_1":"ANG",
+		"defenders":0,
+		"midfield":15,
+		"attacker":10,
+		"background":"GameResources/match_0/background/grass",
+		"commentary":"Incroyable ! Il part tout seul au but adverse !"
+}
