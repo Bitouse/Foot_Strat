@@ -46,16 +46,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\SimpleDragAndDrop\Scripts\DragAndDropCell.cs" />
-     <Compile Include="Assets\SimpleDragAndDrop\Scripts\DragAndDropItem.cs" />
-     <Compile Include="Assets\SimpleDragAndDrop\Scripts\DummyControlUnit.cs" />
      <Compile Include="Assets\Src\Characters\BallAnimation.cs" />
      <Compile Include="Assets\Src\Characters\EnemyAnimations.cs" />
      <Compile Include="Assets\Src\Characters\Orientations.cs" />
      <Compile Include="Assets\Src\GUI\StartLevelTesting.cs" />
      <Compile Include="Assets\Src\Game\GameManager.cs" />
-     <Compile Include="Assets\Src\Game\GameObjectRecycler.cs" />
      <Compile Include="Assets\Src\Game\GameState.cs" />
+     <Compile Include="Assets\Src\Interactions\DragAndDropCell.cs" />
+     <Compile Include="Assets\Src\Interactions\DragAndDropItem.cs" />
+     <Compile Include="Assets\Src\Interactions\DummyControlUnit.cs" />
+     <Compile Include="Assets\Src\Level\GameObjectRecycler.cs" />
      <Compile Include="Assets\Src\Level\Json\JsonHelper.cs" />
      <Compile Include="Assets\Src\Level\LevelBuilder.cs" />
      <Compile Include="Assets\Src\Level\LevelBuilderState.cs" />

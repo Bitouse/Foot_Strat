@@ -1,16 +1,21 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Src/GUI/DragAndDropPlayer.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Src/Level/LevelLoader.cs">
     <Files>
+      <File FileName="Assets/Src/Game/GameManager.cs" Line="1" Column="1" />
       <File FileName="Assets/Src/Level/LevelManager.cs" Line="1" Column="1" />
-      <File FileName="Assets/Src/GUI/StartLevelTesting.cs" Line="8" Column="2" />
-      <File FileName="Assets/Src/GUI/GUIRenderer.cs" Line="12" Column="5" />
-      <File FileName="Assets/Src/Characters/BallAnimation.cs" Line="18" Column="4" />
-      <File FileName="Assets/Src/GUI/DragAndDropPlayer.cs" Line="40" Column="4" />
+      <File FileName="Assets/Src/Level/LevelBuilder.cs" Line="77" Column="37" />
+      <File FileName="Assets/Src/Level/LevelLoader.cs" Line="37" Column="66" />
+      <File FileName="Assets/Src/Level/GameObjectRecycler.cs" Line="9" Column="1" />
+      <File FileName="Assets/Resources/GameResources/match_0/round_0_info.json" Line="12" Column="65" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/mairault/Perso/Foot_strat/Football_strat/Assets/Src/Level/LevelLoader.cs" line="43" column="1" />
+      <Breakpoint file="/Users/mairault/Perso/Foot_strat/Football_strat/Assets/Src/Level/LevelLoader.cs" line="51" column="1" />
+      <Breakpoint file="/Users/mairault/Perso/Foot_strat/Football_strat/Assets/Src/Level/LevelLoader.cs" line="30" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

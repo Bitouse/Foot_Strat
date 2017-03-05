@@ -11,11 +11,19 @@ public class Round {
 	public string team_0;
 	public string team_1;
 	public int defenders;
-	public int midfield;
-	public int attacker;
+	public int midfields;
+	public int attackers;
 	public string commentary;
 	public string background;
 	public CellEnum[ , ] field;
+	// ON field
+	public int bonus;
+	public int enemyDefenders;
+	public int enemyAttackers;
+	public int enemyMidfields;
+	public int allyDefenders;
+	public int allyMidfields;
+	public int allyAttackers;
 
 	public Round(){
 		this.length = 10;
@@ -25,6 +33,21 @@ public class Round {
 	public Round(int lendth, int width){
 		this.length = lendth;
 		this.width = width;
+	}
+
+	public Round(int lendth, int width, int defenders, int midfields, int attackers, int bonus, int eDefenders, int eMidfields, int eAttackers, int aDefenders, int aMidielfd, int aAttackers){
+		this.length = lendth;
+		this.width = width;
+		this.defenders = defenders;
+		this.midfields = midfields;
+		this.attackers = attackers;
+		this.bonus = bonus;
+		this.enemyDefenders = eDefenders;
+		this.enemyAttackers = eAttackers;
+		this.enemyMidfields = eMidfields;
+		this.allyDefenders = aDefenders;
+		this.allyMidfields = aMidielfd;
+		this.allyAttackers = aAttackers;
 	}
 
 	public void setFieldDimensions(){
@@ -40,8 +63,8 @@ public class Round {
 		s += "team_0 : "+this.team_0+"\n";
 		s += "team_1 : "+this.team_1+"\n";
 		s += "defenders : "+this.defenders+"\n";
-		s += "midfield : "+this.midfield+"\n";
-		s += "attacker : "+this.attacker+"\n";
+		s += "midfield : "+this.midfields+"\n";
+		s += "attacker : "+this.attackers+"\n";
 		s += "commentary : "+this.commentary+"\n";
 		s += "field : \n";
 

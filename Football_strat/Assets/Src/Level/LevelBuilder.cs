@@ -9,6 +9,8 @@ public class LevelBuilder:MonoBehaviour {
 	private float cell_size, x_offset = 0f, y_offset = 0f;
 
 	// TODO : do not use instantiate to create field components
+	public GameObject cellsContainer, edContainer, emContainer, eaContainer, adContainer, amContainer, atContainer, ballContainer, goalContainer, goalkeeperContainer, bonusContainer;
+
 	private GameObject cellPrefab, ballPrefab, enemyDefenderPrefab, enemyGoalKeeperPrefab, goalPrefab, allyPrefab;
 	public GameObject grassField;
 	public GameObject defender, midfield, attacker;
@@ -19,12 +21,12 @@ public class LevelBuilder:MonoBehaviour {
 	void Start () {
 		// Load prefab 
 		// TODO : Use a gameObject table to recycle gameobjects
-		ballPrefab = Resources.Load ("prefabs/Ball") as GameObject;
+		/*ballPrefab = Resources.Load ("prefabs/Ball") as GameObject;
 		enemyDefenderPrefab = Resources.Load ("prefabs/Enemy_Player") as GameObject;
 		enemyGoalKeeperPrefab = Resources.Load ("prefabs/Enemy_Goalkeeper") as GameObject;
 		goalPrefab = Resources.Load ("prefabs/Goal") as GameObject;
 		allyPrefab = Resources.Load ("prefabs/Ally_Defender") as GameObject;
-		cellPrefab = Resources.Load ("prefabs/Cell") as GameObject;
+		cellPrefab = Resources.Load ("prefabs/Cell") as GameObject;*/
 	}
 
 	void Update(){
@@ -60,8 +62,8 @@ public class LevelBuilder:MonoBehaviour {
 		score1.text = "1   -";
 		score2.text = "0";
 		defendersNumber.text = "" + LevelManager.currentRound.defenders;
-		midfieldsNumber.text = "" + LevelManager.currentRound.midfield;
-		attackersNumber.text = "" + LevelManager.currentRound.attacker;
+		midfieldsNumber.text = "" + LevelManager.currentRound.midfields;
+		attackersNumber.text = "" + LevelManager.currentRound.attackers;
 	}
 
 	private void displayGridComponents(){
@@ -143,7 +145,9 @@ public class LevelBuilder:MonoBehaviour {
 				Vector3 pos = new Vector3(i + 0.5f, LevelManager.currentRound.length - j - 0.5f, -0.01f) * cell_size;
 				pos.x += x_offset;
 				pos.y += y_offset;
-				GameObject cellGO = Instantiate(cellPrefab, pos, Quaternion.identity) as GameObject;
+				GameObject cellGO = cellsContainer.transform.GetChild(0).gameObject;
+
+
 
 				cellGO.transform.localScale = new Vector3(cellGO.transform.localScale.x, cellGO.transform.localScale.y, cellGO.transform.localScale.z) * cell_size / 100f; 
 				cellGO.name = i + "_" + j;

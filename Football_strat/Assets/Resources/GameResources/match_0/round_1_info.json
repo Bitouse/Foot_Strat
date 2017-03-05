@@ -8,6 +8,13 @@
 		"defenders":0,
 		"midfield":15,
 		"attacker":10,
+		"bonus":0,
+		"enemyDefenders":0,
+		"enemyMidfields":0,
+		"enemyAttackers":0,
+		"allyDefenders":0,
+		"allyMidfields":0,
+		"allyAttackers":0,
 		"background":"GameResources/match_0/background/grass",
 		"commentary":"Incroyable ! Il part tout seul au but adverse !"
 }
