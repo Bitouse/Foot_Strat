@@ -9,11 +9,8 @@ public class LevelBuilder:MonoBehaviour {
 	private float cell_size, x_offset = 0f, y_offset = 0f;
 
 	// TODO : do not use instantiate to create field components
-	public GameObject cellsContainer, edContainer, emContainer, eaContainer, adContainer, amContainer, atContainer, ballContainer, goalContainer, goalkeeperContainer, bonusContainer;
-
-	private GameObject cellPrefab, ballPrefab, enemyDefenderPrefab, enemyGoalKeeperPrefab, goalPrefab, allyPrefab;
+	public GameObject cellsContainer, rpDContainer, rpMContainer, rpAContainer, edContainer, emContainer, eaContainer, adContainer, amContainer, atContainer, ballContainer, goalContainer, goalkeeperContainer, bonusContainer;
 	public GameObject grassField;
-	public GameObject defender, midfield, attacker;
 
 	// Texts fields
 	public Text commentaries, roundInfos, team1, team2, score1, score2, defendersNumber, midfieldsNumber, attackersNumber;
@@ -43,14 +40,40 @@ public class LevelBuilder:MonoBehaviour {
 			break;
 		case global::LevelBuilderState.DISPLAY_COMPONENTS:
 			// Display grid components
-			displayGridComponents();
+			displayGridComponents ();
 			LevelManager.builderState = global::LevelBuilderState.DISPLAY_TEXT;
 			break;
 		case global::LevelBuilderState.DISPLAY_TEXT:
 			// Display text
 			displayText();
+			LevelManager.builderState = global::LevelBuilderState.DISPLAY_PLAYABLE_ALLY;
+			break;
+		case global::LevelBuilderState.DISPLAY_PLAYABLE_ALLY:
+			// Display text
+			displayPlayableAllies();
 			LevelManager.builderState = global::LevelBuilderState.LEVEL_IS_DISPLAYED;
 			break;
+		}
+	}
+
+	private void displayPlayableAllies(){
+		// Defenders
+		for (int i = 0; i < LevelManager.currentRound.defenders; i++) {
+			GameObject pDefenderGO = rpDContainer.transform.GetChild (i).gameObject; 
+			pDefenderGO.SetActive (true);
+			pDefenderGO.transform.position = rpAContainer.transform.position;
+		}
+		// Midfields
+		for (int i = 0; i < LevelManager.currentRound.midfields; i++) {
+			GameObject pMidfieldsGO = rpMContainer.transform.GetChild (i).gameObject; 
+			pMidfieldsGO.SetActive (true);
+			pMidfieldsGO.transform.position = rpMContainer.transform.position;
+		}
+		// Defenders
+		for (int i = 0; i < LevelManager.currentRound.attackers; i++) {
+			GameObject pAttackerGO = rpAContainer.transform.GetChild (i).gameObject; 
+			pAttackerGO.SetActive (true);
+			pAttackerGO.transform.position = rpAContainer.transform.position;
 		}
 	}
 
@@ -74,50 +97,92 @@ public class LevelBuilder:MonoBehaviour {
 				pos.x += x_offset;
 				pos.y += y_offset;
 
+				// Current cell
+				Transform mCell = cellsContainer.transform.Find(i+"_"+j);
+
 				switch (LevelManager.currentRound.field [i, j]) {
 				case CellEnum.BALL_START_CELL:
-					GameObject ballGO = Instantiate (ballPrefab, pos - new Vector3 (0f, 0.35f, 0f) * cell_size, Quaternion.identity) as GameObject;
-					GameObject allyGO = Instantiate (allyPrefab, pos, Quaternion.identity) as GameObject;
+					// Ball 
+					GameObject ballGO = ballContainer.transform.GetChild (0).gameObject; 
+					ballGO.SetActive (true);
 
+					// One ally
+					GameObject allyGO = adContainer.transform.GetChild (0).gameObject; 
+					allyGO.SetActive (true);
+
+					// Scale
 					ballGO.transform.localScale = new Vector3 (ballGO.transform.localScale.x, ballGO.transform.localScale.y, ballGO.transform.localScale.z) * cell_size; 
 					allyGO.transform.localScale = new Vector3 (allyGO.transform.localScale.x, allyGO.transform.localScale.y, allyGO.transform.localScale.z) * cell_size;
 
-					ballGO.transform.parent = transform.Find(i+"_"+j).transform;
-					allyGO.transform.parent = transform.Find(i+"_"+j).transform;
+					// Move inside cell
+					ballGO.transform.parent = mCell;
+					allyGO.transform.parent = mCell;
+
+					ballGO.transform.position = mCell.position + new Vector3(0.1f * cell_size, 0F, 0F);
+					allyGO.transform.position = mCell.position + new Vector3(0.1f * cell_size, 0.5f * cell_size, 0F);
 
 					break;
 				case CellEnum.GOAL_LEFT_CELL:
-					GameObject goalLGO = Instantiate(goalPrefab, pos, Quaternion.Euler(0, 0, 180)) as GameObject;
+					GameObject goalLGO = goalContainer.transform.GetChild (0).gameObject; 
+					goalLGO.SetActive (true);
+					goalLGO.transform.Rotate(new Vector3(0, 0, 180));
+
 					goalLGO.transform.localScale = new Vector3(goalLGO.transform.localScale.x, goalLGO.transform.localScale.y, goalLGO.transform.localScale.z) * cell_size; 
-					goalLGO.transform.parent = transform.Find(i+"_"+j).transform;
+					goalLGO.transform.parent = cellsContainer.transform.Find(i+"_"+j).transform;
+
+					goalLGO.transform.position = cellsContainer.transform.position;
 					break;
 				case CellEnum.GOAL_RIGHT_CELL:
-					GameObject goalRGO = Instantiate(goalPrefab, pos, Quaternion.identity) as GameObject;
+					GameObject goalRGO = goalContainer.transform.GetChild (0).gameObject; 
+					goalRGO.SetActive (true);
+
 					goalRGO.transform.localScale = new Vector3(goalRGO.transform.localScale.x, goalRGO.transform.localScale.y, goalRGO.transform.localScale.z) * cell_size; 
-					goalRGO.transform.parent = transform.Find(i+"_"+j).transform;
+					goalRGO.transform.parent = mCell;
+
+					goalRGO.transform.position = mCell.position;
 					break;
 				case CellEnum.GOAL_TOP_CELL:
-					GameObject goalTGO = Instantiate(goalPrefab, pos, Quaternion.Euler(0, 0, 90)) as GameObject;
+					GameObject goalTGO = goalContainer.transform.GetChild (0).gameObject; 
+					goalTGO.SetActive (true);
+					goalTGO.transform.Rotate(new Vector3(0, 0, 90));
 					goalTGO.transform.localScale = new Vector3(goalTGO.transform.localScale.x, goalTGO.transform.localScale.y, goalTGO.transform.localScale.z) * cell_size; 
-					goalTGO.transform.parent = transform.Find(i+"_"+j).transform;
+					goalTGO.transform.parent = mCell;
+
+					goalTGO.transform.position = mCell.position;
 					break;
 				case CellEnum.GOAL_BOTTOM_CELL:
-					GameObject goalBGO = Instantiate(goalPrefab, pos, Quaternion.Euler(0, 0, 270)) as GameObject;
+					GameObject goalBGO = goalContainer.transform.GetChild (0).gameObject; 
+					goalBGO.SetActive (true);
+					goalBGO.transform.Rotate(new Vector3(0, 0, 270));
+
 					goalBGO.transform.localScale = new Vector3(goalBGO.transform.localScale.x, goalBGO.transform.localScale.y, goalBGO.transform.localScale.z) * cell_size; 
-					goalBGO.transform.parent = transform.Find(i+"_"+j).transform;
+					goalBGO.transform.parent = mCell;
+
+					goalBGO.transform.position = mCell.position;
 					break;
 				case CellEnum.BONUS_CELL:
-
 					break;
 				case CellEnum.ENEMY_DEFENDER_CELL:
-					GameObject enDeGO = Instantiate(enemyDefenderPrefab, pos, Quaternion.identity) as GameObject;
-					enDeGO.transform.localScale = new Vector3(enDeGO.transform.localScale.x, enDeGO.transform.localScale.y, enDeGO.transform.localScale.z) * cell_size; 
-					enDeGO.transform.parent = transform.Find(i+"_"+j).transform;
+					GameObject enDeGO = edContainer.transform.GetChild (0).gameObject; 
+					enDeGO.SetActive (true);
+					enDeGO.transform.position = pos;
+
+					enDeGO.transform.localScale = new Vector3 (enDeGO.transform.localScale.x, enDeGO.transform.localScale.y, enDeGO.transform.localScale.z) * cell_size; 
+					enDeGO.transform.parent = mCell;
+
+					enDeGO.transform.position = mCell.position;
 					break;
 				case CellEnum.ENEMY_GOALKEEPER_CELL:
-					GameObject enGoGO = Instantiate(enemyGoalKeeperPrefab, pos, Quaternion.identity) as GameObject;
+					GameObject enGoGO = goalkeeperContainer.transform.GetChild (0).gameObject; 
+					enGoGO.SetActive (true);
+					enGoGO.transform.position = pos;
+
 					enGoGO.transform.localScale = new Vector3(enGoGO.transform.localScale.x, enGoGO.transform.localScale.y, enGoGO.transform.localScale.z) * cell_size;
-					enGoGO.transform.parent = transform.Find(i+"_"+j).transform; 
+					enGoGO.transform.parent = mCell; 
+
+					enGoGO.transform.position = mCell.position;
+					break;
+				default:
 					break;
 				}
 			}
@@ -139,19 +204,21 @@ public class LevelBuilder:MonoBehaviour {
 	private void displayGrid(){
 		// Space between grid lines
 		setCellHighAndWidth ();
+		int cellIndex = 0;
 
 		for (int i = 0; i < LevelManager.currentRound.width; i++) {
 			for (int j = 0; j < LevelManager.currentRound.length; j++) {
 				Vector3 pos = new Vector3(i + 0.5f, LevelManager.currentRound.length - j - 0.5f, -0.01f) * cell_size;
 				pos.x += x_offset;
 				pos.y += y_offset;
-				GameObject cellGO = cellsContainer.transform.GetChild(0).gameObject;
+				GameObject cellGO = cellsContainer.transform.GetChild(cellIndex).gameObject;
+				cellGO.SetActive (true);
 
-
-
+				cellGO.transform.position = pos;
 				cellGO.transform.localScale = new Vector3(cellGO.transform.localScale.x, cellGO.transform.localScale.y, cellGO.transform.localScale.z) * cell_size / 100f; 
 				cellGO.name = i + "_" + j;
-				cellGO.transform.parent = transform;
+
+				cellIndex++;
 			}
 		}
 	}

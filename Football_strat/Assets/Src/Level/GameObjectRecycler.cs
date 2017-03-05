@@ -3,7 +3,7 @@ using System.Collections;
 
 public class GameObjectRecycler : MonoBehaviour {
 	// Recycler containers
-	public GameObject cellsContainer, edContainer, emContainer, eaContainer, adContainer, amContainer, atContainer, ballContainer, goalContainer, goalkeeperContainer, bonusContainer;
+	public GameObject cellsContainer, rpDContainer, rpMContainer, rpAContainer, edContainer, emContainer, eaContainer, adContainer, amContainer, atContainer, ballContainer, goalContainer, goalkeeperContainer, bonusContainer;
 
 	// Prefabs
 	public GameObject cellPrefab;
@@ -45,7 +45,7 @@ public class GameObjectRecycler : MonoBehaviour {
 		maxEnemyMidfieldsNumber = biggestRound.enemyMidfields;
 		maxEnemyAttackersNumber = biggestRound.enemyAttackers;
 
-		maxAllyDefendersNumber = biggestRound.allyDefenders;
+		maxAllyDefendersNumber = biggestRound.allyDefenders + 1;
 		maxAllyMidfieldsNumber = biggestRound.allyMidfields;
 		maxAllyAttackersNumber = biggestRound.allyAttackers;
 
@@ -76,20 +76,20 @@ public class GameObjectRecycler : MonoBehaviour {
 	private void createRightPannelGameObjects(){
 		// def
 		for (int j = 0; j < maxDefendersNumber; j++) {
-			GameObject go = Instantiate(enemyDefenderPrefab, Vector3.zero, Quaternion.identity) as GameObject;
-			go.transform.parent = adContainer.transform;
+			GameObject go = Instantiate(allyDefenderPrefab, Vector3.zero, Quaternion.identity) as GameObject;
+			go.transform.parent = rpDContainer.transform;
 			go.SetActive (false);
 		}
 		// mid
 		for (int j = 0; j < maxMidfieldsNumber; j++) {
-			GameObject go = Instantiate(enemyMidfieldPrefab, Vector3.zero, Quaternion.identity) as GameObject;
-			go.transform.parent = amContainer.transform;
+			GameObject go = Instantiate(allyMidfieldPrefab, Vector3.zero, Quaternion.identity) as GameObject;
+			go.transform.parent = rpMContainer.transform;
 			go.SetActive (false);
 		}
 		// att
 		for (int j = 0; j < maxAttackersNumber; j++) {
-			GameObject go = Instantiate(enemyAttackerPrefab, Vector3.zero, Quaternion.identity) as GameObject;
-			go.transform.parent = atContainer.transform;
+			GameObject go = Instantiate(allyAttackerPrefab, Vector3.zero, Quaternion.identity) as GameObject;
+			go.transform.parent = rpAContainer.transform;
 			go.SetActive (false);
 		}
 	}
